@@ -1,0 +1,89 @@
+<div class="col-md-12" ng-controller="RolesController">
+    <div class="card">
+        <div class="card-content">
+            <form ng-submit="addRole()">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Role</label>
+                            <input type="text" class="form-control" ng-model="role.Name">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group label-floating">
+                            <label class="control-label">Description</label>
+                            <input type="text" class="form-control" ng-model="role.Description">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2 col-sm-12 col-lg-2 col-xs-12">
+                        <div class="checkbox" style="margin-top:10px;">
+                            <label>
+                                <input type="checkbox" ng-model="role.Active" ng-true-value="1" ng-false-value="0" name="optionsCheckboxes" checked=""><span class="checkbox-material">Active</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary pull-right">Add Role</button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+        <div class="card">
+                                <div class="card-header" data-background-color="purple">
+                                    <h4 class="title">Simple Table</h4>
+                                    <p class="category">Here is a subtitle for this table</p>
+                                </div>
+                                <div class="card-content table-responsive">
+                                    <table class="table">
+                                        <thead class="text-primary">
+                                            <th>Name</th>
+                                            <th>Country</th>
+                                            <th>City</th>
+                                            <th>Salary</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Dakota Rice</td>
+                                                <td>Niger</td>
+                                                <td>Oud-Turnhout</td>
+                                                <td class="text-primary">$36,738</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Minerva Hooper</td>
+                                                <td>Curaçao</td>
+                                                <td>Sinaai-Waas</td>
+                                                <td class="text-primary">$23,789</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sage Rodriguez</td>
+                                                <td>Netherlands</td>
+                                                <td>Baileux</td>
+                                                <td class="text-primary">$56,142</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Philip Chaney</td>
+                                                <td>Korea, South</td>
+                                                <td>Overland Park</td>
+                                                <td class="text-primary">$38,735</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Doris Greene</td>
+                                                <td>Malawi</td>
+                                                <td>Feldkirchen in Kärnten</td>
+                                                <td class="text-primary">$63,542</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mason Porter</td>
+                                                <td>Chile</td>
+                                                <td>Gloucester</td>
+                                                <td class="text-primary">$78,615</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+    </div>
+</div>
