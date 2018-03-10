@@ -41,3 +41,21 @@ module.exports.getRoleById = (id, callback) => {
 module.exports.addRole = (role, callback) => {
 	Role.create(role, callback);
 }
+
+// Update Genre
+module.exports.updateRole = (role, options, callback) => {
+	var query = {_id: role._id};
+	var update = {
+		Name: role.Name,
+		Description: role.Description,
+		Active:role.Active
+	}
+	Role.findOneAndUpdate(query, update, options, callback);
+}
+
+
+// Delete Genre
+module.exports.removeRole = (id, callback) => {
+	var query = {_id: id};
+	Role.remove(query, callback);
+}

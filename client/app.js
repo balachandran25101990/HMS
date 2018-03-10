@@ -1,7 +1,7 @@
-var HMS = angular.module('HMS',['ngRoute']);
+var HMS = angular.module('HMS',['ngRoute', 'ngCookies']);
 
 HMS.config(function($routeProvider){
-	$routeProvider.when('/', {
+	$routeProvider.when('/role', {
 		controller:'RolesController',
 		templateUrl: 'views/role.html'
 	})
@@ -21,7 +21,14 @@ HMS.config(function($routeProvider){
 		controller:'BooksController',
 		templateUrl: 'views/edit_book.html'
 	})
+	.when('/login', {
+		templateUrl: 'views/login.html',
+		controller: "LoginController"
+	})
+	.when('/master', {
+		templateUrl : 'views/master.html'
+	})
 	.otherwise({
-		redirectTo: '/'
+		redirectTo: '/login'
 	});
 });

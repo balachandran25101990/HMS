@@ -1,89 +1,80 @@
-<div class="col-md-12" ng-controller="RolesController">
-    <div class="card">
-        <div class="card-content">
-            <form ng-submit="addRole()">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Role</label>
-                            <input type="text" class="form-control" ng-model="role.Name">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group label-floating">
-                            <label class="control-label">Description</label>
-                            <input type="text" class="form-control" ng-model="role.Description">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 col-sm-12 col-lg-2 col-xs-12">
-                        <div class="checkbox" style="margin-top:10px;">
-                            <label>
-                                <input type="checkbox" ng-model="role.Active" ng-true-value="1" ng-false-value="0" name="optionsCheckboxes" checked=""><span class="checkbox-material">Active</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary pull-right">Add Role</button>
-                <div class="clearfix"></div>
-            </form>
-        </div>
-        <div class="card">
-                                <div class="card-header" data-background-color="purple">
-                                    <h4 class="title">Simple Table</h4>
-                                    <p class="category">Here is a subtitle for this table</p>
+<div class="wrapper mainWrapper">
+    <left-menu></left-menu>
+    <div class="main-panel" style="overflow:auto !important;">
+        <header-Detail></header-Detail>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="col-md-12">                    
+                    <div class="card">
+                        <div class="card-content">
+                            <form ng-submit="addRole()">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Role</label>
+                                            <input type="text" class="form-control" ng-model="role.Name">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="card-content table-responsive">
-                                    <table class="table">
-                                        <thead class="text-primary">
-                                            <th>Name</th>
-                                            <th>Country</th>
-                                            <th>City</th>
-                                            <th>Salary</th>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Dakota Rice</td>
-                                                <td>Niger</td>
-                                                <td>Oud-Turnhout</td>
-                                                <td class="text-primary">$36,738</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Minerva Hooper</td>
-                                                <td>Curaçao</td>
-                                                <td>Sinaai-Waas</td>
-                                                <td class="text-primary">$23,789</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Sage Rodriguez</td>
-                                                <td>Netherlands</td>
-                                                <td>Baileux</td>
-                                                <td class="text-primary">$56,142</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Philip Chaney</td>
-                                                <td>Korea, South</td>
-                                                <td>Overland Park</td>
-                                                <td class="text-primary">$38,735</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Doris Greene</td>
-                                                <td>Malawi</td>
-                                                <td>Feldkirchen in Kärnten</td>
-                                                <td class="text-primary">$63,542</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Mason Porter</td>
-                                                <td>Chile</td>
-                                                <td>Gloucester</td>
-                                                <td class="text-primary">$78,615</td>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Description</label>
+                                            <input type="text" class="form-control" ng-model="role.Description">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-12 col-lg-2 col-xs-12">
+                                        <div class="checkbox" style="margin-top:10px;">
+                                            <label>
+                                                <input type="checkbox" ng-model="role.Active" name="optionsCheckboxes" checked=""><span class="checkbox-material">Active</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary pull-right">Add Role</button>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                        <div>
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Role</h4>
+                                <p class="category">Role Management</p>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                        <th>SlNo</th>
+                                        <th class="text-center">Actions</th>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Active</th>
+                                    </thead>
+                                    <tbody data-ng-repeat="row in rolesArray">
+                                        <tr>
+                                            <td data-ng-bind="$index + 1"></td>
+                                            <td class="text-center">
+                                                <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" 
+                                                data-original-title="Edit Role" data-ng-click="EditRole(row)">
+                                                <i class="material-icons">edit</i>
+                                                <div class="ripple-container"></div></button>
+                                                <button type="button" rel="tooltip" title="" data-ng-click="DeleteRole(row)" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove">
+                                                        <i class="material-icons">delete</i>
+                                                    <div class="ripple-container"></div></button>
+                                            </td>
+                                                <td data-ng-bind="row.Name"></td>
+                                                <td data-ng-bind="row.Description"></td>
+                                                <td data-ng-bind="row.Active ? 'Yes' : 'No'"></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    
