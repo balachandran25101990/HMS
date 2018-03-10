@@ -5,9 +5,9 @@ HMS.config(function($routeProvider){
 		controller:'RolesController',
 		templateUrl: 'views/role.html'
 	})
-	.when('/books', {
-		controller:'BooksController',
-		templateUrl: 'views/books.html'
+	.when('/employee', {
+		controller:'EmployeeController',
+		templateUrl: 'views/employee.html'
 	})
 	.when('/books/details/:id',{
 		controller:'BooksController',

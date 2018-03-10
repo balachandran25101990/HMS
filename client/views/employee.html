@@ -1,0 +1,126 @@
+<div class="wrapper mainWrapper">
+    <left-menu></left-menu>
+    <div class="main-panel" style="overflow:auto !important;">
+        <header-Detail></header-Detail>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="col-md-12">                    
+                    <div class="card">
+                        <div class="card-content">
+                            <form ng-submit="addEmployee()">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">First Name</label>
+                                            <input type="text" class="form-control" data-ng-model="employee.FirstName">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Middle Name</label>
+                                            <input type="text" class="form-control" data-ng-model="employee.MiddleName">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Last Name</label>
+                                            <input type="text" class="form-control" data-ng-model="employee.LastName">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Code</label>
+                                            <input type="text" class="form-control" data-ng-model="employee.Code">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Password</label>
+                                            <input type="password" class="form-control" data-ng-model="employee.Password">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Mobile</label>
+                                            <input type="text" class="form-control" data-ng-model="employee.Mobile" onkeypress="return isNumber(event)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">EmailId</label>
+                                            <input type="text" class="form-control" data-ng-model="employee.EmailId">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Role</label>
+                                            <select data-ng-model="employee.RoleId" class="form-control" ng-options="option._id as option.Name for option in roleArray"><option value=""></option></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="checkbox" style="margin-top:10px;text-align:right;">
+                                            <label>
+                                                <input type="checkbox" data-ng-model="employee.Active" name="optionsCheckboxes" checked=""><span class="checkbox-material">Active</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a data-ng-click="clearEmployee()" class="btn btn-default pull-right">Clear</a>
+                                <button type="submit" class="btn btn-primary pull-right">Add Employee</button>
+                                
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                        <div>
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Employee View</h4>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                        <th>SlNo</th>
+                                        <th class="text-center">Actions</th>
+                                        <th>Name</th>
+                                        <th>Code</th>
+                                        <th>Password</th>
+                                        <th>Mobile</th>
+                                        <th>Role</th>
+                                        <th>EmailId</th>
+                                        <th>Active</th>
+                                    </thead>
+                                    <tbody data-ng-repeat="row in employeeArray">
+                                        <tr>
+                                            <td data-ng-bind="$index + 1"></td>
+                                            <td class="text-center">
+                                                <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" 
+                                                data-original-title="Edit Employee" data-ng-click="editEmployee(row)">
+                                                <i class="material-icons">edit</i>
+                                                <div class="ripple-container"></div></button>
+                                                <button type="button" rel="tooltip" title="" data-ng-click="deleteEmployee(row)" 
+                                                class="btn btn-danger btn-simple btn-xs" data-original-title="Remove">
+                                                        <i class="material-icons">delete</i>
+                                                    <div class="ripple-container"></div></button>
+                                            </td>
+                                                <td data-ng-bind="combineName(row)"></td>
+                                                <td data-ng-bind="row.Code"></td>
+                                                <td data-ng-bind="row.Password"></td>
+                                                <td data-ng-bind="row.Mobile"></td>
+                                                <td data-ng-bind="row.Role"></td>
+                                                <td data-ng-bind="row.EmailId"></td>
+                                                <td data-ng-bind="row.Active ? 'Yes' : 'No'"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    

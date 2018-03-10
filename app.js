@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+//#region Connection to DB
+
 app.use(express.static(__dirname+'/client'));
 app.use(bodyParser.json());
 
@@ -13,10 +15,11 @@ Employee = require('./models/employee');
 mongoose.connect("mongodb://localhost:27017/HMS");
 var db =mongoose.connection;
 
-app.get('/', (req, res) => {
-	res.send("Welcome to HMS !");
-});
+//#endregion
 
+//#region Employee Authenticate
+
+//Employee Login
 app.post('/api/EmployeeAuthenticate', (req, res) => {
 	var employeeAuthenticate = req.body;
 	console.log(employeeAuthenticate);
@@ -28,6 +31,11 @@ app.post('/api/EmployeeAuthenticate', (req, res) => {
 	});
 });
 
+//#endregion
+
+//#region Manage Role
+
+//Get Roles
 app.get('/api/roles', (req, res) => {
 	Role.getRoles((err, roles) =>{
 		if(err){
@@ -37,6 +45,7 @@ app.get('/api/roles', (req, res) => {
 	})
 });
 
+//Get Roles based on Id
 app.get('/api/roles/:_id', (req, res) => {
 	Role.getRoleById(req.params._id, (err, role) => {
 		if(err){
@@ -46,6 +55,7 @@ app.get('/api/roles/:_id', (req, res) => {
 	});
 });
 
+// Add a role.
 app.post('/api/roles', (req, res) => {
 	var role = req.body;
 	Role.addRole(role, (err, role) => {
@@ -56,6 +66,7 @@ app.post('/api/roles', (req, res) => {
 	});
 });
 
+//Update a Role
 app.put('/api/roles/', (req, res) => {
 	var role = req.body;
 	Role.updateRole(role, {}, (err, role) => {
@@ -66,8 +77,10 @@ app.put('/api/roles/', (req, res) => {
 	});
 });
 
-app.delete('/api/roles/', (req, res) => {
-	var id = req._id;
+//Delete a Role
+app.delete('/api/roles/:_id', (req, res) => {
+	console.log(req._id);
+	var id = req.params._id;
 	Role.removeRole(id, (err, role) => {
 		if(err){
 			throw err;
@@ -76,7 +89,64 @@ app.delete('/api/roles/', (req, res) => {
 	});
 });
 
+//#endregion
 
+//#region Manage Employee 
+
+//Get Employees
+app.get('/api/employees', (req, res) => {
+	Employee.getEmployees((err, employees) =>{
+		if(err){
+			throw err;
+		}
+		res.json(employees);
+	})
+});
+
+//Get Employees based on Id
+app.get('/api/employees/:_id', (req, res) => {
+	Employee.getEmployeeById(req.params._id, (err, employee) => {
+		if(err){
+			throw err;
+		}
+		res.json(employee);
+	});
+});
+
+// Add a Employee.
+app.post('/api/employees', (req, res) => {
+	var employee = req.body;
+	Employee.addEmployee(employee, (err, employee) => {
+		if(err){
+			throw err;
+		}
+		res.json(employee);
+	});
+});
+
+//Update a Employee
+app.put('/api/employees/', (req, res) => {
+	var employee = req.body;
+	Employee.updateEmployee(employee, {}, (err, employee) => {
+		if(err){
+			throw err;
+		}
+		res.json(employee);
+	});
+});
+
+//Delete a Employee
+app.delete('/api/employees/:_id', (req, res) => {
+	var id = req.params._id;
+	Employee.removeEmployee(id, (err, employee) => {
+		if(err){
+			throw err;
+		}
+		res.json(employee);
+	});
+});
+
+//#endregion
 
 app.listen(3000);
 console.log("running in port : 3000....");

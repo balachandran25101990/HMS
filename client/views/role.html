@@ -39,8 +39,7 @@
                         </div>
                         <div>
                             <div class="card-header" data-background-color="purple">
-                                <h4 class="title">Role</h4>
-                                <p class="category">Role Management</p>
+                                <h4 class="title">Role View</h4>
                             </div>
                             <div class="card-content table-responsive">
                                 <table class="table">
@@ -56,10 +55,10 @@
                                             <td data-ng-bind="$index + 1"></td>
                                             <td class="text-center">
                                                 <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" 
-                                                data-original-title="Edit Role" data-ng-click="EditRole(row)">
+                                                data-original-title="Edit Role" data-ng-click="editRole(row)">
                                                 <i class="material-icons">edit</i>
                                                 <div class="ripple-container"></div></button>
-                                                <button type="button" rel="tooltip" title="" data-ng-click="DeleteRole(row)" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove">
+                                                <button type="button" rel="tooltip" title="" data-ng-click="deleteRole(row)" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove">
                                                         <i class="material-icons">delete</i>
                                                     <div class="ripple-container"></div></button>
                                             </td>

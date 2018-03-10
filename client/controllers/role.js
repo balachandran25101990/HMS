@@ -1,7 +1,10 @@
 HMS.controller('RolesController', ['$rootScope','$scope', '$http', '$location', '$routeParams', '$cookies', function($rootScope, $scope, $http, $location, $routeParams, $cookies){
 	$scope.getRoles = function(){
 		$http.get('/api/roles').success(function(response){
-			$scope.rolesArray = response;
+			if(response != null)
+			{
+				$scope.rolesArray = response.splice(1);	
+			}
 		});
 	}
 	$scope.getRoles();
@@ -31,14 +34,9 @@ HMS.controller('RolesController', ['$rootScope','$scope', '$http', '$location', 
 			$http.post('/api/roles/', $scope.role).success(function(response){
 				if(response != null)
 				{
-					if(response != null)
-					{
-						demo.showNotification("Role added/ Updated Successfully!", 1, 'done');
-						$scope.getRoles();
-					}
-					else
-					demo.showNotification("Error in Add/ Update Role!", 3, 'error');
+					demo.showNotification("Role added/ Updated Successfully!", 1, 'done');
 					$scope.getRoles();
+					$scope.role = {};
 				}
 				else
 				demo.showNotification("Error in Add/ Update Role!", 3, 'error');
@@ -48,7 +46,7 @@ HMS.controller('RolesController', ['$rootScope','$scope', '$http', '$location', 
 		$scope.updateRole();
 	}
 	
-	$scope.EditRole = function(row)
+	$scope.editRole = function(row)
 	{
 		angular.element('.roleFloat').removeClass('is-empty');
 		$scope.role = row;
@@ -67,7 +65,8 @@ HMS.controller('RolesController', ['$rootScope','$scope', '$http', '$location', 
 			{
 				demo.showNotification("Role added/ Updated Successfully!", 1, 'done');
 				$scope.getRoles();
-			//	$cookies.remove('loginEmployeeId');
+				$scope.role = {};
+				angular.element('.roleFloat').addClass('is-empty');
 			}
 			else
 			demo.showNotification("Error in Add/ Update Role!", 3, 'error');
@@ -75,7 +74,9 @@ HMS.controller('RolesController', ['$rootScope','$scope', '$http', '$location', 
 	}
 	
 	$scope.deleteRole = function(row){
+		debugger
 		$http.delete('/api/roles/'+row._id).success(function(response){
+			debugger
 			if(response != null)
 			{
 				demo.showNotification("Role Deleted Successfully!", 1, 'done');

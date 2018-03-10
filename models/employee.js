@@ -65,7 +65,32 @@ module.exports.getEmployeeAuthenticate = (code, password, callback) => {
 	Employee.findOne({Code: code, Password: password}, callback);
 }
 
-// Add Role
-module.exports.addEmployee = (role, callback) => {
-	Employee.create(role, callback);
+// Add Employee
+module.exports.addEmployee = (employee, callback) => {
+	Employee.create(employee, callback);
+}
+
+// Update Employee
+module.exports.updateEmployee = (employee, options, callback) => {
+	var query = {_id: employee._id};
+	var update = {
+		FirstName: employee.FirstName,
+		MiddleName: employee.MiddleName,
+		LastName: employee.LastName,
+		Code: employee.Code,
+		Password: employee.Password,
+		Mobile:	employee.Mobile,
+		RoleId: employee.RoleId,
+		EmailId:employee.EmailId,
+		UpdatedBy: employee.UpdatedBy,
+		Active:employee.Active
+	}
+	Employee.findOneAndUpdate(query, update, options, callback);
+}
+
+
+// Delete Employee
+module.exports.removeEmployee = (id, callback) => {
+	var query = {_id: id};
+	Employee.remove(query, callback);
 }
