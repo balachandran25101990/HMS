@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const roleSchema = mongoose.Schema({
 	Name:{
 		type:String,
-		reuired:true
+		required:true
 	},
 	Description:{
 		type:String
@@ -46,6 +46,7 @@ module.exports.addRole = (role, callback) => {
 module.exports.updateRole = (role, options, callback) => {
 	var query = {_id: role._id};
 	var update = {
+	
 		Name: role.Name,
 		Description: role.Description,
 		Active:role.Active

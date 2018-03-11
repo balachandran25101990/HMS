@@ -9,15 +9,13 @@
                         <div class="card-content">
                             <form ng-submit="addRole()">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group label-floating roleFloat">
                                             <label class="control-label">Role</label>
                                             <input type="text" class="form-control" ng-model="role.Name">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group label-floating roleFloat">
                                             <label class="control-label">Description</label>
                                             <input type="text" class="form-control" ng-model="role.Description">
@@ -32,8 +30,10 @@
                                             </label>
                                         </div>
                                     </div>
+                                    <div class="col-md-10 col-sm-12 col-lg-10    col-xs-12">
+                                        <button type="submit" class="btn btn-primary pull-right">Add Role</button>
+                                    </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary pull-right">Add Role</button>
                                 <div class="clearfix"></div>
                             </form>
                         </div>

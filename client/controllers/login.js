@@ -14,18 +14,24 @@ HMS.controller('LoginController', ['$rootScope', '$scope', '$http', '$location',
 	}
     $scope.employee = {};
 	$scope.LoginValidate = function(){
-		// console.log($scope.employee);
+		if($scope.employee == undefined || $scope.employee.Code == undefined || $scope.employee.Code == "")
+		{
+			demo.showNotification("Ensure Code!", 2, 'warning');
+			return false;
+		}
+		if($scope.employee == undefined || $scope.employee.Password == undefined || $scope.employee.Password == "")
+		{
+			demo.showNotification("Ensure Password!", 2, 'warning');
+			return false;
+		}
 		 $http.post('/api/EmployeeAuthenticate/', $scope.employee).success(function(response){
             debugger
             if (response == null) {
-                return;
+				demo.showNotification("Authentication failed!", 3, 'error');
+				return;
 			}
-			debugger
 			$cookies.put('loginEmployeeId', response._id);
 			$location.path('role');
-			// $.cookie("loginEmployeeId", response._id, {expires:1, domain: "http://localhost:3000"});
-			// console.log(response._id);
-			// console.log($.cookie("loginEmployeeId"));
          });
 	}
 
