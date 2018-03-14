@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 Role = require('./models/role');
 Employee = require('./models/employee');
+Customer = require('./models/customer');
 
 //Connect To Mongo DB
 mongoose.connect("mongodb://localhost:27017/HMS");
@@ -147,6 +148,65 @@ app.delete('/api/employees/:_id', (req, res) => {
 });
 
 //#endregion
+
+//#region Manage Customer 
+
+//Get Customers
+app.get('/api/customers', (req, res) => {
+	Customer.getCustomers((err, customers) =>{
+		if(err){
+			throw err;
+		}
+		res.json(customers);
+	})
+});
+
+//Get Customers based on Id
+app.get('/api/customers/:_id', (req, res) => {
+	Customer.getCustomerById(req.params._id, (err, customer) => {
+		if(err){
+			throw err;
+		}
+		res.json(customer);
+	});
+});
+
+// Add a Customer.
+app.post('/api/customers', (req, res) => {
+	var customer = req.body;
+	Customer.addCustomer(customer, (err, customer) => {
+		if(err){
+			throw err;
+		}
+		res.json(customer);
+	});
+});
+
+//Update a Customer
+app.put('/api/customers/', (req, res) => {
+	var customer = req.body;
+	Customer.updateCustomer(customer, {}, (err, customer) => {
+		if(err){
+			throw err;
+		}
+		res.json(customer);
+	});
+});
+
+//Delete a customer
+app.delete('/api/customers/:_id', (req, res) => {
+	var id = req.params._id;
+	Customer.removeCustomer(id, (err, customer) => {
+		if(err){
+			throw err;
+		}
+		res.json(customer);
+	});
+});
+
+//#endregion
+
+
 
 app.listen(3000);
 console.log("running in port : 3000....");
