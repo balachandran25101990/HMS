@@ -149,6 +149,21 @@ app.delete('/api/employees/:_id', (req, res) => {
 
 //#endregion
 
+//#region Customer Authenticate
+
+//Customer Login
+app.post('/api/CustomerAuthenticate', (req, res) => {
+	var customerAuthenticate = req.body;
+	Employee.getCustomerAuthenticate(customerAuthenticate.Code, customerAuthenticate.Password, (err, customer) => {
+		if(err){
+			throw err;
+		}
+		res.json(customer);
+	});
+});
+
+//#endregion
+
 //#region Manage Customer 
 
 //Get Customers

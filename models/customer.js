@@ -59,6 +59,10 @@ const customerSchema = mongoose.Schema({
 
 const Customer = module.exports = mongoose.model('Customer', customerSchema);
 
+module.exports.getCustomerAuthenticate = (code, password, callback) => {
+	Customer.findOne({Code: code, Password: password}, callback);
+}
+
 module.exports.getCustomers = (callback, limit) =>{
 	Customer.find(callback).limit(limit);
 }
