@@ -154,7 +154,7 @@ app.delete('/api/employees/:_id', (req, res) => {
 //Customer Login
 app.post('/api/CustomerAuthenticate', (req, res) => {
 	var customerAuthenticate = req.body;
-	Employee.getCustomerAuthenticate(customerAuthenticate.Code, customerAuthenticate.Password, (err, customer) => {
+	Customer.getCustomerAuthenticate(customerAuthenticate.Code, customerAuthenticate.Password, (err, customer) => {
 		if(err){
 			throw err;
 		}
