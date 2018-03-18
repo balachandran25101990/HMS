@@ -5,9 +5,6 @@ const customerSchema = mongoose.Schema({
 		type:String,
 	    required:true
     },
-    MiddleName:{
-		type:String
-    },
     LastName:{
         type:String,
         required:true
@@ -28,8 +25,8 @@ const customerSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    DOB:{
-        type:Date,
+    Age:{
+        type:String,
         required:true
     },
     Height:{
@@ -69,7 +66,7 @@ module.exports.updateCustomer = (customer, options, callback) => {
 		Password: customer.Password,
 		Mobile:	customer.Mobile,
         EmailId:customer.EmailId,
-        DOB:customer.DOB,
+        Age:customer.Age,
         Height:customer.Height,
         Weight:customer.Weight,
 		}

@@ -167,28 +167,19 @@ app.post('/api/CustomerAuthenticate', (req, res) => {
 //#region Manage Customer 
 
 //Get Customers
-app.get('/api/customers', (req, res) => {
+app.get('/api/customers/', (req, res) => {
 	Customer.getCustomers((err, customers) =>{
 		if(err){
 			throw err;
 		}
 		res.json(customers);
-	})
-});
-
-//Get Customers based on Id
-app.get('/api/customers/:_id', (req, res) => {
-	Customer.getCustomerById(req.params._id, (err, customer) => {
-		if(err){
-			throw err;
-		}
-		res.json(customer);
 	});
 });
 
 // Add a Customer.
-app.post('/api/customers', (req, res) => {
+app.post('/api/customers/', (req, res) => {
 	var customer = req.body;
+	
 	Customer.addCustomer(customer, (err, customer) => {
 		if(err){
 			throw err;
