@@ -37,24 +37,7 @@ const customerSchema = mongoose.Schema({
     },
     Weight:{
         type:Number
-    },
-	Active:{
-		type:Boolean
-	},
-	CreatedBy:{
-		type:String
-	},
-	CreatedDate:{
-		type:Date,
-		default:Date.now
-	},
-	UpdatedBy:{
-		type:String
-	},
-	UpdatedDate:{
-		type:Date,
-		default:Date.now
-	}
+    }
 });
 
 const Customer = module.exports = mongoose.model('Customer', customerSchema);
@@ -81,7 +64,6 @@ module.exports.updateCustomer = (customer, options, callback) => {
 	var query = {_id: customer._id};
 	var update = {
 		FirstName: customer.FirstName,
-		MiddleName: customer.MiddleName,
 		LastName: customer.LastName,
 		Code: customer.Code,
 		Password: customer.Password,
@@ -90,9 +72,7 @@ module.exports.updateCustomer = (customer, options, callback) => {
         DOB:customer.DOB,
         Height:customer.Height,
         Weight:customer.Weight,
-		UpdatedBy: customer.UpdatedBy,
-		Active:customer.Active
-	}
+		}
 	Customer.findOneAndUpdate(query, update, options, callback);
 }
 
