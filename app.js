@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 Role = require('./models/role');
 Employee = require('./models/employee');
 Customer = require('./models/customer');
+Product = require('./models/product');
 
 //Connect To Mongo DB
 mongoose.connect("mongodb://localhost:27017/HMS");
@@ -212,7 +213,52 @@ app.delete('/api/customers/:_id', (req, res) => {
 
 //#endregion
 
+//#region Manage Product 
 
+//Get Products
+app.get('/api/products/', (req, res) => {
+	Product.getProducts((err, products) =>{
+		if(err){
+			throw err;
+		}
+		res.json(products);
+	});
+});
+
+// Add a Product.
+app.post('/api/products/', (req, res) => {
+	var product = req.body;
+	Product.addProduct(product, (err, product) => {
+		if(err){
+			throw err;
+		}
+		res.json(product);
+	});
+});
+
+//Update a Product
+app.put('/api/products/', (req, res) => {
+	var product = req.body;
+	Product.updateProduct(product, {}, (err, product) => {
+		if(err){
+			throw err;
+		}
+		res.json(product);
+	});
+});
+
+//Delete a product
+app.delete('/api/products/:_id', (req, res) => {
+	var id = req.params._id;
+	Product.removeProduct(id, (err, product) => {
+		if(err){
+			throw err;
+		}
+		res.json(product);
+	});
+});
+
+//#endregion
 
 app.listen(3000);
 console.log("running in port : 3000....");

@@ -1,0 +1,114 @@
+<div class="wrapper mainWrapper">
+    <left-menu></left-menu>
+    <div class="main-panel" style="overflow:auto !important;">
+        <header-Detail></header-Detail>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="col-md-12">                    
+                    <div class="card">
+                        <div class="card-content">
+                            <form ng-submit="addProduct()">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Product Name</label>
+                                            <input type="text" class="form-control" data-ng-model="product.ProductName">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Product Category</label>
+                                            <select data-ng-model="product.ProductCategory" class="form-control">
+                                                <option value="0"></option>
+                                                <option value="1">Food Items</option>
+                                                <option value="2">Cosmetics</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Product BarCode</label>
+                                            <input type="text" class="form-control" data-ng-model="product.ProductId">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Description</label>
+                                            <input type="text" class="form-control" data-ng-model="product.ProductDesc">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Advantage</label>
+                                            <textarea type="text" class="form-control" data-ng-model="product.ProductAdv"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating roleFloat">
+                                            <label class="control-label">Dis Advantage</label>
+                                            <textarea type="text" class="form-control" data-ng-model="product.ProductDisAdv"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="checkbox" style="margin-top:10px;text-align:right;">
+                                        <label>
+                                            <input type="checkbox" data-ng-model="product.Active" name="optionsCheckboxes" checked=""><span class="checkbox-material">Active</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <a data-ng-click="clearProduct()" class="btn btn-default pull-right">Clear</a>
+                                <button type="submit" class="btn btn-primary pull-right">Add Product</button>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                        <div>
+                            <div class="card-header" data-background-color="purple">
+                                <h4 class="title">Product View</h4>
+                            </div>
+                            <div class="card-content table-responsive">
+                                <table class="table">
+                                    <thead class="text-primary">
+                                        <th>SlNo</th>
+                                        <th class="text-center">Actions</th>
+                                        <th>Name</th>
+                                        <th>Product Category</th>
+                                        <th>Barcode Detils</th>
+                                        <th>Description</th>
+                                        <th>Advantages</th>
+                                        <th>DisAdvantages</th>
+                                        <th>Active</th>
+                                    </thead>
+                                    <tbody data-ng-repeat="row in productArray">
+                                        <tr>
+                                            <td data-ng-bind="$index + 1"></td>
+                                            <td class="text-center">
+                                                <button type="button" rel="tooltip" title="" class="btn btn-primary btn-simple btn-xs" 
+                                                data-original-title="Edit Product" data-ng-click="editProduct(row)">
+                                                <i class="material-icons">edit</i>
+                                                <div class="ripple-container"></div></button>
+                                                <button type="button" rel="tooltip" title="" data-ng-click="deleteProduct(row)" 
+                                                class="btn btn-danger btn-simple btn-xs" data-original-title="Remove">
+                                                <i class="material-icons">delete</i>
+                                                <div class="ripple-container"></div></button>
+                                            </td>
+                                            <td data-ng-bind="row.ProductName"></td>
+                                            <td data-ng-bind="row.ProductCategory"></td>
+                                            <td data-ng-bind="row.ProductDesc"></td>
+                                            <td data-ng-bind="row.ProductAdv"></td>
+                                            <td data-ng-bind="row.ProductDisAdv"></td>
+                                            <td data-ng-bind="row.ProductId"></td>
+                                            <td data-ng-bind="row.Active ? 'Yes' : 'No'"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

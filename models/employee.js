@@ -61,7 +61,6 @@ module.exports.getEmployeeById = (id, callback) => {
 }
 
 module.exports.getEmployeeAuthenticate = (code, password, callback) => {
-    console.log("Code"+ code + " Password:" +password);
 	Employee.findOne({Code: code, Password: password}, callback);
 }
 
