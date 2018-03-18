@@ -48,8 +48,8 @@ module.exports.getProducts = (callback, limit) =>{
 	Product.find(callback).limit(limit);
 }
 
-module.exports.getProductById = (id, callback) => {
-	Product.findById(id, callback);
+module.exports.getProductByProductId = (productId, callback) => {
+	Product.findOne({ProductId: productId}, callback);
 }
 
 // Add Product

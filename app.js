@@ -225,6 +225,17 @@ app.get('/api/products/', (req, res) => {
 	});
 });
 
+app.post('/api/productBasedOnProductId', (req, res) => {
+	var product = req.body;
+	console.log(product);
+	Product.getProductByProductId(product.ProductId, (err, product) => {
+		if(err){
+			throw err;
+		}
+		res.json(product);
+	});
+});
+
 // Add a Product.
 app.post('/api/products/', (req, res) => {
 	var product = req.body;
